@@ -17,6 +17,8 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
+		Event::fire(UpdateScoreEventHandler::EVENT, array($updatedMatch));
+
 		return View::make('hello');
 	}
 

@@ -1,0 +1,1 @@
+Event::listen(UpdateScoreEventHandler::EVENT, 'UpdateScoreEventHandler');
