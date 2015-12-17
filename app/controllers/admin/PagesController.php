@@ -11,7 +11,7 @@ class PagesController extends \BaseController {
  
     public function index()
     {
-        $updatedMatch = array('score.update' => '100');
+        $updatedMatch = 'score.update100';
         Event::fire(UpdateScoreEventHandler::EVENT, array($updatedMatch));
 
         return \View::make('admin.pages.index')->with('pages', Page::all());
@@ -19,6 +19,9 @@ class PagesController extends \BaseController {
 
     public function show($id)
     {
+        $updatedMatch = 'aaaaa';
+        Event::fire(UpdateScoreEventHandler::EVENT, array($updatedMatch));
+        
         return \View::make('admin.pages.show')->with('page', Page::find($id))->withAuthor(Sentry::findUserById(Page::find($id)->user_id)->name);
     }
 
