@@ -32,6 +32,29 @@
 			margin: 16px 0 0 0;
 		}
 	</style>
+	
+	<script src="{{ URL::asset('js/jquery-1.9.1.min.js') }}"></script>
+	<script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ URL::asset('js/script.js') }}"></script>
+	<script src="{{ URL::asset('js/socket.io.js') }}"></script>
+
+	<link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ URL::asset('css/bootstrap-responsive.min.css') }}" rel="stylesheet">
+	<link href="{{ URL::asset('css/main.css') }}" rel="stylesheet">
+
+	<script type="text/javascript">// <![CDATA[
+            var socket = io.connect('http://127.0.0.1:3000/');
+ 
+            //socket.on('connect', function(data){
+            //    socket.emit('subscribe', {channel:'score.update'});
+            //});
+ 
+            socket.on('score.update', function (data) {
+                //Do something with data
+                console.log('Score updated: ', data);
+            });
+ 
+// ]]></script>
 </head>
 <body>
 	<div class="welcome">

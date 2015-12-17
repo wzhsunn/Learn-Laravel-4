@@ -22,4 +22,11 @@ class HomeController extends BaseController {
 		return View::make('hello');
 	}
 
+	public function getT()
+	{
+		Event::fire(UpdateScoreEventHandler::EVENT, array($updatedMatch));
+		return View::make('t');
+
+	}
+
 }

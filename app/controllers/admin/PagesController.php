@@ -3,7 +3,7 @@
 namespace App\Controllers\Admin;
  
 use Page;
-use Input, Notification, Redirect, Sentry, Str;
+use Input, Notification, Redirect, Sentry, Str, Event, UpdateScoreEventHandler;
 
 use App\Services\Validators\PageValidator;
 
@@ -11,6 +11,9 @@ class PagesController extends \BaseController {
  
     public function index()
     {
+        $updatedMatch = array('score.update' => '100');
+        Event::fire(UpdateScoreEventHandler::EVENT, array($updatedMatch));
+
         return \View::make('admin.pages.index')->with('pages', Page::all());
     }
 
