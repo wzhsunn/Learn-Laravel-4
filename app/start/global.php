@@ -81,5 +81,9 @@ App::down(function()
 require app_path().'/filters.php';
 
 
+View::composer('admin._partials.navigation', function($view)
+{
+    $view->with('count', SimNotification::count());
+});
 
 require app_path().'/listeners.php';

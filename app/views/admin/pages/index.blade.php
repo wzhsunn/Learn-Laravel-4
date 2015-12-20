@@ -8,13 +8,14 @@
             // var socket = io.connect('http://127.0.0.1:3000/');
             var socket = io.connect('http://192.168.56.121:3000/');
  
-            socket.on('connect', function(data){
-               socket.emit('subscribe', {channel:'score.update'});
-            });
+            // socket.on('connect', function(data){
+            //    socket.emit('subscribe', {channel:'score.update'});
+            // });
             console.log("here");
-            socket.on('score.update', function (data) {
+            socket.on('score.update1', function (data) {
                 //Do something with data
                 console.log('Score updated: ', data);
+                $("#notification").text(data);
             });
  
 // ]]></script>

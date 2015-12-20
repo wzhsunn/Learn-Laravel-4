@@ -19,7 +19,7 @@ class PagesController extends \BaseController {
 
     public function show($id)
     {
-        $updatedMatch = 'aaaaa';
+        $updatedMatch = '这是一条来自show页面的实时数据';
         Event::fire(UpdateScoreEventHandler::EVENT, array($updatedMatch));
         
         return \View::make('admin.pages.show')->with('page', Page::find($id))->withAuthor(Sentry::findUserById(Page::find($id)->user_id)->name);
@@ -27,6 +27,10 @@ class PagesController extends \BaseController {
 
     public function create()
     {
+        $updatedMatch = 1;
+
+        Event::fire("score.update", array($updatedMatch));
+
         return \View::make('admin.pages.create');
     }
 
@@ -41,7 +45,7 @@ class PagesController extends \BaseController {
 						$page->body    = Input::get('body');
 						$page->user_id = Sentry::getUser()->id;
             $page->save();
- 
+            
             Notification::success('新增页面成功！');
  
             return Redirect::route('admin.pages.edit', $page->id);
